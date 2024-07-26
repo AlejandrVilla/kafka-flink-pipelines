@@ -4,10 +4,13 @@ from pyflink.table import TableEnvironment, EnvironmentSettings
 env_settings = EnvironmentSettings.in_streaming_mode()
 t_env = TableEnvironment.create(env_settings)
 
+# Instrucción para eliminar la tabla
+t_env.execute_sql("DROP TABLE IF EXISTS source_table")
+
 # Specify connector and format jars
 t_env.get_config().get_configuration().set_string(
     "pipeline.jars",
-    "file:///path/to/flink-sql-connector-kafka-1.15.2.jar"
+    "file:///usr/lib/flink/lib/flink-sql-connector-kafka-3.2.0.jar"
 )
 
 # Define source table DDL
@@ -23,7 +26,7 @@ source_ddl = """
     ) WITH (
         'connector' = 'kafka',
         'topic' = 'my-topic-test',
-        'properties.bootstrap.servers' = 'your-ip:9092',
+        'properties.bootstrap.servers' = 'ec2-34-226-148-69.compute-1.amazonaws.com:9092',
         'properties.group.id' = 'test_3',
         'scan.startup.mode' = 'latest-offset',
         'format' = 'json'

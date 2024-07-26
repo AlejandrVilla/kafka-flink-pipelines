@@ -11,15 +11,16 @@ sudo yum install git -y
 git --version
 git clone git@github.com:AlejandrVilla/kafka-flink-pipelines.git
 ```
-- Use ini.sh to get kafka
-```
-./ini.sh
-```
 
 - Set permissions
 ```
 cd kafka-flink-pipelines
 sudo chmod u+x *.sh
+```
+
+- Use ini.sh to get kafka
+```
+./ini.sh
 ```
 
 - Install dependencies
@@ -52,10 +53,16 @@ pip install --ignore-installed -r requirements.txt
 ## Set up python producer and consumer
 - Change bootstrap_servers in producer and consumer python files (change the ip address)
 ```
+cd twitterKafka/
+```
+```
 bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server addresses
 ```
 
 - Run python producer
+```
+cd twitterKafka/
+```
 ```
 cd twitterKafka/
 python kafka_tweets_producer.py
@@ -69,16 +76,6 @@ python kafka_tweets_consumer.py
 
 
 ## Set up hdfs
-- Change bootstrap_servers in the hdfs consumer python file (change the ip address)
-```
-bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server addresses
-```
- 
-- Change the hdfs path in hdfs consumer python file (change the ip address)
-```
-hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.json'  
-```
-
 - Create the directory in hdfs
 ```
 sudo su - hdfs
@@ -86,6 +83,19 @@ hdfs dfs -mkdir /kafka_demo
 hdfs dfs -touchz /kafka_demo/tweets_data.json
 hdfs dfs -cat /kafka_demo/tweets_data.json
 exit
+```
+
+- Change bootstrap_servers in the hdfs consumer python file (change the ip address)
+```
+cd twitterKafka/
+```
+```
+bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server addresses
+```
+ 
+- Change the hdfs path in hdfs consumer python file (change the ip address)
+```
+hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.json'  
 ```
 
 - Run hdfs consumer
@@ -107,9 +117,17 @@ exit
 ./kafka-conector.sh
 ```
 
+- Change the ip in kafka_flink_streaming.py file
+```
+cd realTimeStreaming/kafkaFlinkPipeline
+```
+```
+'properties.bootstrap.servers' = 'your-ip:9092',
+```
+
 - Run flink streaming
 ```
-cd realTimeStreaming/"kafkaFlinkPipeline"
+cd realTimeStreaming/kafkaFlinkPipeline
 python kafka_flink_streaming.py
 ```
 
