@@ -14,18 +14,18 @@ producer = KafkaProducer(
 
 
 # to read keys from secret txt file
-with open('/path/to/secrets.txt') as f:
-    for line in f:
-        if '=' in line:
-            key, value = line.strip().split(' = ')
-            if key == 'CONSUMER_KEY':
-                CONSUMER_KEY = value.strip("'")
-            elif key == 'CONSUMER_SECRET':
-                CONSUMER_SECRET = value.strip("'")
-            elif key == 'ACCESS_TOKEN':
-                ACCESS_TOKEN = value.strip("'")
-            elif key == 'ACCESS_TOKEN_SECRET':
-                ACCESS_TOKEN_SECRET = value.strip("'")
+# with open('/path/to/secrets.txt') as f:
+#     for line in f:
+#         if '=' in line:
+#             key, value = line.strip().split(' = ')
+#             if key == 'CONSUMER_KEY':
+#                 CONSUMER_KEY = value.strip("'")
+#             elif key == 'CONSUMER_SECRET':
+#                 CONSUMER_SECRET = value.strip("'")
+#             elif key == 'ACCESS_TOKEN':
+#                 ACCESS_TOKEN = value.strip("'")
+#             elif key == 'ACCESS_TOKEN_SECRET':
+#                 ACCESS_TOKEN_SECRET = value.strip("'")
 
 
 auth=tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)

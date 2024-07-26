@@ -3,7 +3,7 @@ from time import sleep
 from rich import print
 
 # Define the path to the JSON file
-json_file_path = 'path/to/data.json'
+json_file_path = './data.json'
 
 # Read the JSON file
 with open(json_file_path, 'r') as file:
