@@ -7,9 +7,7 @@ from time import sleep
 
 producer = KafkaProducer(
     bootstrap_servers=[
-        'vps-data1:9092',
-        'vps-data2:9092',
-        'vps-data3:9092'
+        'ip-172-31-85-30.ec2.internal:9092'
     ],
     value_serializer=lambda K:dumps(K).encode('utf-8')
 )

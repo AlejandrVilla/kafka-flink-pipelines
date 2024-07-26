@@ -6,7 +6,7 @@ from rich import print
 # Create a Kafka consumer
 consumer = KafkaConsumer(
     'my-topic-test',  # Topic to consume messages from
-    bootstrap_servers=['your-ip1:9092'],  # Kafka server addresses
+    bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server addresses
     auto_offset_reset='earliest',  # Reset offset to the latest available message
     enable_auto_commit=True,  # Enable auto commit of consumed messages
     group_id=None,  # Consumer group ID (None indicates an individual consumer)
