@@ -14,7 +14,8 @@ consumer = KafkaConsumer(
     value_deserializer=lambda x: loads(x.decode('utf-8'))  # Deserialize the message value from JSON to Python object
 )
 
-hdfs_path = 'hdfs://VPS-DATA1:9000/kafka_demo/tweets_data.json'  # Path to the HDFS file
+# hdfs_path = 'hdfs://VPS-DATA1:9000/kafka_demo/tweets_data.json'
+hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.json'  # Path to the HDFS file
 
 # Process incoming messages
 for message in consumer:
