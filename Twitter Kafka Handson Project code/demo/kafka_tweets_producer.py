@@ -34,7 +34,7 @@ producer = KafkaProducer(
 # api=tweepy.API(auth)
 # cursor=tweepy.Cursor(api.search_tweets,q='music', lang="en",tweet_mode='extended').items(100)
 
-json_file_path = '../data.json'
+json_file_path = '../../data.json'
 
 with open(json_file_path, 'r') as file:
     for line in file:
