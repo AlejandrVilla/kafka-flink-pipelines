@@ -57,13 +57,13 @@ bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server address
 
 - Run python producer
 ```
-cd "Twitter Kafka Handson Project code"/demo/
+cd twitterKafka/
 python kafka_tweets_producer.py
 ```
 
 - Run python consumer
 ```
-cd "Twitter Kafka Handson Project code"/demo/
+cd twitterKafka/
 python kafka_tweets_consumer.py
 ```
 
@@ -81,7 +81,7 @@ hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.jso
 
 - Run hdfs consumer
 ```
-cd "Twitter Kafka Handson Project code"/demo/
+cd twitterKafka/
 python hdfs_consumer.py
 ```
 
@@ -93,7 +93,7 @@ python hdfs_consumer.py
 
 - Run flink streaming
 ```
-cd "Real Time Streaming pipeline Handson code"/"Kafka Flink Pipeline"
+cd realTimeStreaming/"kafkaFlinkPipeline"
 python kafka_flink_streaming.py
 ```
 
