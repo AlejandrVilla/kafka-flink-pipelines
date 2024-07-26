@@ -7,8 +7,8 @@ t_env = TableEnvironment.create(env_settings)
 # Specify connector and format jars
 t_env.get_config().get_configuration().set_string(
     "pipeline.jars",
-    "file:///path/to/flink-sql-connector-kafka_2.11-1.14.4.jar;"
-    "file:///path/to/flink-sql-connector-elasticsearch7_2.11-1.14.4.jar"
+    "file:///path/to/flink-sql-connector-kafka_2.11-1.14.4.jar"
+    # "file:///path/to/flink-sql-connector-elasticsearch7_2.11-1.14.4.jar"
 )
 
 # Define source table DDL
@@ -51,7 +51,7 @@ sink_ddl = """
 
 # Execute DDL statements to create tables
 t_env.execute_sql(source_ddl)
-t_env.execute_sql(sink_ddl)
+# t_env.execute_sql(sink_ddl)
 
 # Retrieve the source table
 source_table = t_env.from_path('source_table')
@@ -59,14 +59,23 @@ source_table = t_env.from_path('source_table')
 print("Source Table Schema:")
 source_table.print_schema()
 
+# define a sql query to select all columns
+sql_query = "SELECT * FROM source_table"
+
+# execute the query and retrieve the result table
+result_table = t_env.sql_query(sql_query)
+
+# print results
+result_table.execute().print()
+
 # Process the data
-result_table = source_table.select("*")
+# result_table = source_table.select("*")
 
 # Retrieve the sink table
-sink_table = t_env.from_path('sink_table')
+# sink_table = t_env.from_path('sink_table')
 
-print("Sink Table Schema:")
-sink_table.print_schema()
+# print("Sink Table Schema:")
+# sink_table.print_schema()
 
 # Insert the processed data into the sink table
-result_table.execute_insert('sink_table').wait()
+# result_table.execute_insert('sink_table').wait()

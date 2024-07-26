@@ -5,8 +5,14 @@ from kafka import KafkaProducer
 from rich import print
 from time import sleep
 
-producer = KafkaProducer(bootstrap_servers=['vps-data1:9092','vps-data2:9092','vps-data3:9092'],
-                         value_serializer=lambda K:dumps(K).encode('utf-8'))
+producer = KafkaProducer(
+    bootstrap_servers=[
+        'vps-data1:9092',
+        'vps-data2:9092',
+        'vps-data3:9092'
+    ],
+    value_serializer=lambda K:dumps(K).encode('utf-8')
+)
 
 
 # to read keys from secret txt file
