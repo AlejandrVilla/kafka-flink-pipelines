@@ -79,10 +79,26 @@ bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server address
 hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.json'  
 ```
 
+- Create the directory in hdfs
+```
+sudo su - hdfs
+hdfs dfs -mkdir /kafka_demo
+hdfs dfs -touchz /kafka_demo/tweets_data.json
+hdfs dfs -cat /kafka_demo/tweets_data.json
+exit
+```
+
 - Run hdfs consumer
 ```
 cd twitterKafka/
 python hdfs_consumer.py
+```
+
+- Check the data
+```
+sudo su - hdfs
+hdfs dfs -cat /kafka_demo/tweets_data.json
+exit
 ```
 
 ## Set up flink
