@@ -1,6 +1,5 @@
 rich
 kafka-python
 pydoop
-tweepy
 apache-flink==1.17.1
 nltk

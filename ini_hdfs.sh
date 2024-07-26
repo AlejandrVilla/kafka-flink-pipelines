@@ -1,5 +1,5 @@
 #! /bin/bash
 
-hadoop fs -mkdir /kafka_demo
-hadoop fs -touchz /kafka_demo/tweets_data.json
-hadoop fs -cat /kafka_demo/tweets_data.json
+hdfs dfs -mkdir /kafka_demo
+hdfs dfs -touchz /kafka_demo/tweets_data.json
+hdfs dfs -cat /kafka_demo/tweets_data.json
