@@ -1,9 +1,13 @@
 #! /bin/bash
 
+sudo yum update -y
+sudo yum install git -y
+
 python3 --version
 pip --version
 java --version
 # scala -version
+git --version
 
 # scala
 curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
