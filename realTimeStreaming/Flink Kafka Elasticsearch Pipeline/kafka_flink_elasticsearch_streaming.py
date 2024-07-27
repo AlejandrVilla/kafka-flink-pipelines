@@ -51,7 +51,7 @@ sink_ddl = """
 
 # Execute DDL statements to create tables
 t_env.execute_sql(source_ddl)
-# t_env.execute_sql(sink_ddl)
+t_env.execute_sql(sink_ddl)
 
 # Retrieve the source table
 source_table = t_env.from_path('source_table')
@@ -69,13 +69,13 @@ result_table = t_env.sql_query(sql_query)
 result_table.execute().print()
 
 # Process the data
-# result_table = source_table.select("*")
+result_table = source_table.select("*")
 
 # Retrieve the sink table
-# sink_table = t_env.from_path('sink_table')
+sink_table = t_env.from_path('sink_table')
 
 # print("Sink Table Schema:")
-# sink_table.print_schema()
+sink_table.print_schema()
 
 # Insert the processed data into the sink table
-# result_table.execute_insert('sink_table').wait()
+result_table.execute_insert('sink_table').wait()

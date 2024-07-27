@@ -33,8 +33,26 @@ source_ddl = """
     )
 """
 
+# Definir la tabla sink (HDFS)
+sink_ddl_hdfs = """
+    CREATE TABLE sink_table(
+        id_str VARCHAR,
+        username VARCHAR,
+        tweet VARCHAR,
+        location VARCHAR,
+        retweet_count BIGINT,
+        followers_count BIGINT,
+        lang VARCHAR
+    ) WITH (
+        'connector' = 'filesystem',
+        'path' = 'hdfs:///your-hdfs-path/tweets',
+        'format' = 'csv'
+    )
+"""
+
 # Execute DDL statement to create the source table
 t_env.execute_sql(source_ddl)
+t_env.execute_sql(sink_ddl_hdfs)
 
 # Retrieve the source table
 source_table = t_env.from_path('source_table')
@@ -50,3 +68,15 @@ result_table = t_env.sql_query(sql_query)
 
 # Print the result table to the console
 result_table.execute().print()
+
+# Process the data
+result_table = source_table.select("*")
+
+# Retrieve the sink table
+sink_table = t_env.from_path('sink_table')
+
+# print("Sink Table Schema:")
+sink_table.print_schema()
+
+# Insert the processed data into the sink table
+result_table.execute_insert('sink_table').wait()

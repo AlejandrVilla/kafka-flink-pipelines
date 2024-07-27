@@ -17,7 +17,10 @@ def word_count_stream_processing():
     t_env = TableEnvironment.create(env_settings)
 
     # Specify connector and format jars
-    t_env.get_config().get_configuration().set_string("pipeline.jars", "file:///path/to/flink-sql-connector-kafka_2.11-1.14.4.jar;file:///path/to/flink-sql-connector-elasticsearch7_2.11-1.14.4.jar")
+    t_env.get_config().get_configuration().set_string(
+        "pipeline.jars", 
+        "file:///path/to/flink-sql-connector-kafka_2.11-1.14.4.jar;file:///path/to/flink-sql-connector-elasticsearch7_2.11-1.14.4.jar"
+    )
 
     # Define source and sink DDLs
     source_ddl = """
