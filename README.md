@@ -9,7 +9,7 @@
 sudo yum update -y
 sudo yum install git -y
 git --version
-git clone git@github.com:AlejandrVilla/kafka-flink-pipelines.git
+git clone https://github.com/AlejandrVilla/kafka-flink-pipelines.git
 ```
 
 - Set permissions
