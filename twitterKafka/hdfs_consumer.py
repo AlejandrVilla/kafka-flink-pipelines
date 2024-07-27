@@ -15,7 +15,7 @@ consumer = KafkaConsumer(
 )
 
 # HDFS client
-hdfs_client = InsecureClient('http://ip-172-31-85-30.ec2.internal:50070', user='your_hdfs_user')
+hdfs_client = InsecureClient('http://ip-172-31-85-30.ec2.internal:9870', user='your_hdfs_user')
 
 # HDFS path
 hdfs_path = '/kafka_demo/tweets_data.json'

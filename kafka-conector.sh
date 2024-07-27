@@ -3,8 +3,8 @@
 # DOWNLOAD_URL=https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka/1.15.2/flink-sql-connector-kafka-1.15.2.jar
 DOWNLOAD_URL=https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.2.0-1.19/flink-sql-connector-kafka-3.2.0-1.19.jar
 JAR_PATH=/usr/lib/flink/lib/flink-sql-connector-kafka-3.2.0.jar
-sudo chmod 777 /usr/lib/flink/lib/flink-sql-connector-kafka-3.2.0.jar
 sudo curl -L -o ${JAR_PATH} ${DOWNLOAD_URL}
+sudo chmod 777 /usr/lib/flink/lib/flink-sql-connector-kafka-3.2.0.jar
 
 
 # SCRIPT_DIR="$(cd $(dirname "$0"); pwd)"

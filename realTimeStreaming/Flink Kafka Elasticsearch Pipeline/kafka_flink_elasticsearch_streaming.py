@@ -51,7 +51,7 @@ sink_ddl = """
 
 # Execute DDL statements to create tables
 t_env.execute_sql(source_ddl)
-t_env.execute_sql(sink_ddl)
+# t_env.execute_sql(sink_ddl)
 
 # Retrieve the source table
 source_table = t_env.from_path('source_table')

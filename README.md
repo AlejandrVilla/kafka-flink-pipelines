@@ -85,6 +85,24 @@ hdfs dfs -cat /kafka_demo/tweets_data.json
 exit
 ```
 
+- Set dfs.webhdfs.enabled property to true
+```
+sudo nano /etc/hadoop/conf/hdfs-site.xml
+
+# set this configuration to true
+<configuration>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+</configuration>
+```
+
+- Restart the service and apply the changes
+```
+sudo systemctl restart hadoop-hdfs-namenode
+```
+
 - Change bootstrap_servers in the hdfs consumer python file (change the ip address)
 ```
 cd twitterKafka/
@@ -95,7 +113,18 @@ bootstrap_servers=['ip-172-31-85-30.ec2.internal:9092'],  # Kafka server address
  
 - Change the hdfs path in hdfs consumer python file (change the ip address)
 ```
-hdfs_path = 'hdfs://ip-172-31-85-30.ec2.internal:8020/kafka_demo/tweets_data.json'  
+hdfs_client = InsecureClient('http://ip-172-31-85-30.ec2.internal:9870', user='hdfs') 
+```
+
+- To get the hdfs path use
+
+```
+./hdfs_path.sh
+```
+
+- Get the webhdfs port and change it if it's not 9870
+```
+hdfs getconf -confKey dfs.namenode.http-address
 ```
 
 - Run hdfs consumer
@@ -132,6 +161,11 @@ python kafka_flink_streaming.py
 ```
 
 ## other
+- Add the following inbound rules to your cluster
+    - 8088
+    - 9870
+    - 9092
+- If it's necessary, change the JAVA_HOME environment variable
 ```
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/include/
 ```

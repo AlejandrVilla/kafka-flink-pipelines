@@ -1,4 +1,5 @@
 from pyflink.table import TableEnvironment, EnvironmentSettings
+from pyflink.table.expressions import col, concat
 
 # Create a TableEnvironment
 env_settings = EnvironmentSettings.in_streaming_mode()
@@ -60,22 +61,21 @@ source_table = t_env.from_path('source_table')
 print("Source Table Schema:")
 source_table.print_schema()
 
-# Define a SQL query to select all columns from the source table
-sql_query = "SELECT * FROM source_table"
-
-# Execute the query and retrieve the result table
-result_table = t_env.sql_query(sql_query)
-
-# Print the result table to the console
-result_table.execute().print()
-
 # Process the data
-result_table = source_table.select("*")
+result_table = source_table.select(
+    col("id_str"),
+    col("username"),
+    col("tweet"),
+    col("location"),
+    col("retweet_count"),
+    col("followers_count"),
+    col("lang")
+)
 
 # Retrieve the sink table
 sink_table = t_env.from_path('sink_table')
 
-# print("Sink Table Schema:")
+print("Sink Table Schema:")
 sink_table.print_schema()
 
 # Insert the processed data into the sink table
