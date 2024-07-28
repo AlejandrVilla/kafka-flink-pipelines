@@ -157,7 +157,7 @@ cd realTimeStreaming/kafkaFlinkPipeline
 - Run flink streaming
 ```
 cd realTimeStreaming/kafkaFlinkPipeline
-python kafka_flink_streaming.py
+python source_kafka_flink_streaming.py
 ```
 
 ## other
